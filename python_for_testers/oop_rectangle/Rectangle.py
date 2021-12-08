@@ -1,8 +1,10 @@
-class Rectangle:
+from python_for_testers.oop_rectangle.Triangle import Triangle
 
-    height = 0.0
-    width = 0.0
 
-    def calculate_area(self, width, height):
-        return height * width
+class Rectangle(Triangle):
 
+    def __init__(self, height, width):
+        super().__init__(height, width)
+
+    def calculate_area(self):
+        return self.height * self.width
