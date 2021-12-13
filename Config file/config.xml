@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Environment>
+	<Url>https://atidcollege.co.il/Xamples/bmi/</Url>
+	<Weight>147</Weight>
+	<Height>216</Height>
+	<ExpectedResultBMI>32</ExpectedResultBMI>
+</Environment>
