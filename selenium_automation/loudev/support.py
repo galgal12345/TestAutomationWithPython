@@ -7,7 +7,11 @@ from selenium.webdriver.common.by import By
 class Support:
 
     def verify_elements(self, driver):
+        i = 2
+        expected = 'elem '
         elements = driver.find_elements(By.CSS_SELECTOR, "#ms-aloha li[class='ms-elem-selectable']")
-        my_size_list_elem = len(elements)
-        assert elements[0].text == "elem 3", "Test Failed"
-        assert elements[my_size_list_elem - 1].text == "elem 20", "Test Failed"
+        for elem in elements:
+            i += 1
+            if "ms-selected" not in elem.get_attribute("class"):
+                actual = elem.find_element(By.TAG_NAME, "span").text
+                assert actual == expected + str(i), "Test Failed"
