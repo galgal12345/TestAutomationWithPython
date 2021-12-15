@@ -1,16 +1,16 @@
-from selenium import webdriver
-from selenium.webdriver.remote.webelement import WebElement
-from webdriver_manager.chrome import ChromeDriverManager
+import softest
 from selenium.webdriver.common.by import By
 
 
-class Support:
+class Support(softest.TestCase):
 
     def verify_elements(self, driver):
-
-        expected = 'my_elem '
-        elements = driver.find_elements(By.CSS_SELECTOR, "#ms-aloha li[class='ms-my_elem-selectable']")
+        elements = driver.find_elements(By.CSS_SELECTOR, "#ms-aloha li[class='ms-elem-selectable']")
+        number: int = int(elements[0].find_element(By.TAG_NAME, "span").text[5::])
         for i in range(len(elements)):
-            if "selected" not in elements[i].get_attribute("class"):
-                actual = elements[i].find_element(By.TAG_NAME, "span").text
-                assert actual == expected + str(i), "Test Failed"
+            actual = elements[i].find_element(By.TAG_NAME, "span").text
+            expected = 'elem ' + str(number)
+            self.soft_assert(self.assertTrue, actual == expected, "Test Failed")
+            number += 1
+
+        self.assert_all()
